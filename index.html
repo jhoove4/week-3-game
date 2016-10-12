@@ -22,13 +22,14 @@ var win = 0;
 var loss =0;
 var guessesLeft=10;
 var guessesSoFar=[];
-var	computerGuess = computerChoices[Math.floor(Math.random()*computerChoices.length)];
+var	computerGuess= computerChoices[Math.floor(Math.random()*computerChoices.length)];
 
 function startGame(){
-	guessesLeft=10;
-	computerGuess;
-	computerChoices= [];
-}
+	guessesLeft = 10;
+        computerGuess =  computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        guessesSoFar=[];
+    }
+
 // Captures Key Clicks
 document.onkeyup = function(event) {
 guessesLeft--;	
@@ -41,7 +42,6 @@ guessesLeft--;
 	console.log(guessesSoFar);
 	updateGuesses(userGuess);
 
-		 for (var i = 0; i < guessesLeft; i++) {
 
 		if (userGuess == computerGuess) {
 			win++;
@@ -49,16 +49,13 @@ guessesLeft--;
 
 			alert("You guessed it!");
 			confirm("Play Again");
-				break;
 		}
 	if(guessesSoFar >guessesLeft){
 		loss++;
-		(startGame);
+		startGame();
 
 		confirm("Play Again?");
-		break;
 	}
-}
 }
 
 
