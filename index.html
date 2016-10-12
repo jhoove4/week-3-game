@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Game</title>
+</head>
+<body>
+<h1>Psychic Game</h1>
+<br>
+<h4>Guess What Letter I Am Thinking Of</h4>
+
+<div id="game">
+
+</div>
+
+<script type="text/javascript">
+
+// Create an array that lists out all of the options
+//needs functions, no loops, like at array splice delete in mdn
+
+var computerChoices=['a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'k', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var win = 0;
+var loss =0;
+var guessesLeft=10;
+var guessesSoFar=[];
+var	computerGuess = computerChoices[Math.floor(Math.random()*computerChoices.length)];
+
+function startGame(){
+	guessesLeft=10;
+	computerGuess;
+	computerChoices= [];
+}
+// Captures Key Clicks
+document.onkeyup = function(event) {
+guessesLeft--;	
+	// Determines which exact key was selected. Make it lowercase\
+	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+	console.log('user guess', userGuess);
+	console.log('computer guess', computerGuess);
+	console.log(guessesLeft);
+	guessesSoFar.push(userGuess);
+	console.log(guessesSoFar);
+	updateGuesses(userGuess);
+
+		 for (var i = 0; i < guessesLeft; i++) {
+
+		if (userGuess == computerGuess) {
+			win++;
+			startGame();
+
+			alert("You guessed it!");
+			confirm("Play Again");
+				break;
+		}
+	if(guessesSoFar >guessesLeft){
+		loss++;
+		(startGame);
+
+		confirm("Play Again?");
+		break;
+	}
+}
+}
+
+
+	// reduce the number of guesses left by one
+
+        // get the user input as a lower case letter
+
+        // add the guess to the an array of guessed letters
+
+        // update html for guesses made and number of guesses
+
+        // if there are still guesses left:
+            // check for a match
+                // if matching, update win count and html
+                // reset the game
+
+        // if there are no guesses left
+
+            // update loss count and html
+            // reset the game
+   
+
+	
+	
+	
+// function guessLetter(){
+// 	var	letters = computerChoices[Math.floor(Math.random()*computerChoices.length)];
+// 	var userGuess = prompt("Guess a the letter I am thinking of");
+
+// }
+// for (i=0; i<10; i++) {
+// 	if(userGuess == letters){
+// 		alert("You guessed Correctly!")
+// 	}
+// 	else{
+// 		userGuess=prompt("Try Again")
+// 	}
+// }
+function updateGuesses(userGuess){
+document.querySelector('#game').innerHTML =   'you chose:' + userGuess  +
+		"<p> Wins: " +
+		win +
+		"</p>" +
+		"<p>Losses: " +
+		loss +
+		"</p>" +
+		"<p>Guesses left: " +
+		guessesLeft +
+		"</p>" +
+		"<p>Guesses So Far: " +
+		guessesSoFar +
+		"</p>";
+}
+
+
+
+
+</script>
+</body>
+</html>
